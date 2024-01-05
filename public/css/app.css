@@ -18,3 +18,9 @@ body
     display: grid;
     grid-template-rows: auto 1fr auto;
 }
+
+.max-height {
+    max-height: 90vh; 
+    width: auto;
+    overflow: hidden;
+}
