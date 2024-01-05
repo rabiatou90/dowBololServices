@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		{# Encodage des caractères #}
+		<meta
+		charset="UTF-8">
+
+		{# Minimum de responsive design #}
+		<meta
+		name="viewport" content="width=device-width, initial-scale=1.0">
+
+		{# Titre de chaque page dans l'onglet #}
+		<title>
+			{% block title %}{% endblock %}Inscription
+			-Le site de transfert d'argent DBS</title>
+
+		{# La description de chaque page dans l'onglet #}
+		<meta
+		name="description" content="Inscrivez-vous">
+
+		{# Les balises utiles pour le SEO #}
+		<meta name="robots" content="index, follow">
+
+		<meta name="author" content="DBS">
+		<meta
+		name="publisher" content="DBS">
+
+		{# La favicon #}
+		<link rel="apple-touch-icon" sizes="180x180" href="{{asset('favicon/apple-touch-icon.png')}}">
+		<link rel="icon" type="image/png" sizes="32x32" href="{{asset('favicon/favicon-32x32.png')}}">
+		<link rel="icon" type="image/png" sizes="16x16" href="{{asset('favicon/favicon-16x16.png')}}">
+		<link rel="manifest" href="{{asset('favicon/site.webmanifest')}}">
+		<link rel="mask-icon" href="{{asset('favicon/safari-pinned-tab.svg" color="#ff2223')}}">
+		<meta name="msapplication-TileColor" content="#ff2233">
+		<meta
+		name="theme-color" content="#ff2223">
+
+		{# Google font #}
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link
+		href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:ital@1&display=swap" rel="stylesheet">
+
+		{# La feuille de style de Bootstrap #}
+		<link
+		href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+		{# Ma feuille de style #}
+		<link rel="stylesheet" href="{{asset('css/app.css')}}">
+	</head>
+	<body class="h-100">
+		<main class="container my-5">
+			<div class="row">
+				<div class="col-lg-7 text-center">
+					<img src="{{asset('images/agent/inscription/Inscrivez-vous-pour-effectuer-le-transfert.jpeg')}}" class="img-fluid max-height" alt="Image pour l'inscription">
+				</div>
+				<div class="col-lg-5 d-flex flex-column justify-content-center align-items-center">
+
+                
+                    {% for flash_error in app.flashes('verify_email_error') %}
+                        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+                    {% endfor %}
+					{{form_start(registrationForm)}}
+					<div class="row">
+						<div class="col-lg-6 mb-3">
+							<label for="registration_form_prenom">Prénom</label>
+                            <div class="text-danger">{{ form_errors(registrationForm.prenom) }}</div>
+							{{ form_widget(registrationForm.prenom, {'attr': {'class':'form-control'}}) }}
+						</div>
+                        <div class="col-lg-6 mb-3">
+                        <label for="registration_form_nom">Nom</label>
+                        <div class="text-danger">{{ form_errors(registrationForm.nom) }}</div>
+							{{ form_widget(registrationForm.nom, {'attr': {'class':'form-control'}})}}
+                        </div>
+					</div>
+                    <div class="mb-3">
+                        <label for="registration_form_email">Email</label>
+                        <div class="text-danger">{{ form_errors(registrationForm.email) }}</div>
+							{{ form_widget(registrationForm.email, {'attr': {'class':'form-control'}})}}
+                    </div>
+                    <div class="mb-3">
+                        <label for="registration_form_password_first">Mot de passe</label>
+                        <div class="text-danger">{{ form_errors(registrationForm.password.first) }}</div>
+							{{ form_widget(registrationForm.password.first, {'attr': {'class':'form-control', 'placeholder':"Au moins 12 caractères"}})}}
+                            <small><em>Le mot de passe doit contenir au moins 12 caractères</em></small>
+                    </div>
+                    <div class="mb-3">
+                        <label for="registration_form_password_second">Confirmation du mot de passe</label>
+                        <div class="text-danger">{{ form_errors(registrationForm.password.second) }}</div>
+							{{ form_widget(registrationForm.password.second, {'attr': {'class':'form-control'}})}}
+                    </div>
+                    <div class="mb-3">
+                        <label for="registration_form_contact">Contact</label>
+                        <div class="text-danger">{{ form_errors(registrationForm.contact) }}</div>
+							{{ form_widget(registrationForm.contact, {'attr': {'class':'form-control'}})}}
+                    </div>
+                    <div class="mb-3">
+                        <label for="registration_form_pays">Pays</label>
+                        <div class="text-danger">{{ form_errors(registrationForm.pays) }}</div>
+							{{ form_widget(registrationForm.pays, {'attr': {'class':'form-control'}})}}
+                    </div>
+                    <div class="mb-3">
+                        <label for="registration_form_agreeTerms">
+                            {{ form_widget(registrationForm.agreeTerms)}}
+                            Lire et accepter <a href="#" data-bs-toggle="modal" data-bs-target="#agreeTermsModal">les conditions générales d'utilisation</a>
+                        </label>
+                        <!-- Button trigger modal -->
+                            <div class="modal fade" id="agreeTermsModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">                            
+                                <div class="modal-dialog modal-dialog-scrollable">
+                                    <div class="modal-content ">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Les conditions générales d'utilisation</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>
+                                                Bienvenue sur notre plateforme de transfert d'argent en ligne. En utilisant nos services, vous acceptez les présentes conditions générales qui régissent votre accès et votre utilisation de notre site. Vous vous engagez à respecter toutes les lois et réglementations applicables et assumez l'entière responsabilité de toutes les activités liées à votre compte. Nous nous réservons le droit de modifier, suspendre ou interrompre nos services à tout moment, pour des raisons de maintenance, de sécurité ou pour améliorer notre plateforme. En continuant à utiliser nos services après toute modification, vous consentez à être lié par les conditions mises à jour.
+                                            </p>
+                                            <p>
+                                                Lorsque vous effectuez des transferts d'argent via notre plateforme, vous reconnaissez que vous êtes le titulaire légitime du compte associé aux informations de paiement que vous fournissez. Nous mettons en œuvre des mesures de sécurité strictes pour protéger vos données, mais vous êtes également responsable de maintenir la confidentialité de votre mot de passe et de toute information sensible liée à votre compte. Nous ne sommes pas responsables des transactions non autorisées résultant d'une divulgation de votre part. De plus, tout usage frauduleux de nos services entraînera la résiliation immédiate de votre compte, et nous coopérerons pleinement avec les autorités compétentes pour enquêter sur de telles activités.
+                                            </p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                        
+                    </div>
+                    <div> 
+                        <input formnovalidate type="submit" class="btn-btn-primary shadow" value="S'inscrire">
+                    </div>
+                    {{ form_end(registrationForm)}}
+				</div>
+			</div>
+		</main>
+
+
+		{# Le script de Bootstrap #}
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+	</body>
+</html>
