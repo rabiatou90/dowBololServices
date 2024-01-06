@@ -61,6 +61,7 @@
                     {% for flash_error in app.flashes('verify_email_error') %}
                         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
                     {% endfor %}
+
 					{{form_start(registrationForm)}}
 					<div class="row">
 						<div class="col-lg-6 mb-3">
@@ -132,9 +133,14 @@
                         
                     </div>
                     <div> 
-                        <input formnovalidate type="submit" class="btn-btn-primary shadow" value="S'inscrire">
+                        <input formnovalidate type="submit" class="w-100 btn-btn-dark shadow" value="S'inscrire">
                     </div>
                     {{ form_end(registrationForm)}}
+                <div class="text-center mt-3"> 
+                    <p>Vous avez dejà un compte? <a href="">Connectez-vous</a></p>
+                    <p><a href="{{path('agents_bienvenue_index')}}">Retour à l'accueil</a></p>
+                </div>
+                    
 				</div>
 			</div>
 		</main>
