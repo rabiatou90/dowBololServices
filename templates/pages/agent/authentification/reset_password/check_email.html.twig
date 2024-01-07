@@ -1,0 +1,17 @@
+{% extends 'themes/base_agent.html.twig' %}
+
+{% block title %}Email de réinitialisation de mot de passe envoyé
+{% endblock %}
+
+{% block main %}
+	<main>
+		<p>
+			S'il existe un compte correspondant à votre adresse email, cela signifie qu'un email contenant un lien que vous pouvez utiliser pour réinitialiser votre mot de passe vient d'être envoyé.
+			        Ce lien expirera dans
+			{{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+		</p>
+		<p>Si vous ne recevez pas d'email, veuillez vérifier votre dossier spam ou
+			<a href="{{ path('agents_authentication_forgot_password_request') }}">réessayez</a>.</p>
+	</main>
+
+{% endblock %}
